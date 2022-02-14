@@ -18,14 +18,21 @@ public class KeywordController {
     @GetMapping("/api/vocab")
     public ListKeywordResponse listKeywords(){
         return new ListKeywordResponse(service.listKeywords());
-    }
+    } // TO-DO : return empty list when no input
 
+    /*
+        @GetMapping("/{id}", produces = "application/json")
+    */
     @PostMapping("/api/vocab")
     public ListKeywordResponse addKeyword(@RequestBody AddKeywordsRequest request){ // Use @requestBody to convert JSON to Java Object
         String[] keywords = request.getKeywords();
         List<Keyword> listKeywords = new ArrayList<>();
+        List<Keyword> keywordsFromMemory = service.listKeywords();
         for(String keyword: keywords){
-            listKeywords.add(new Keyword(keyword));
+            Keyword newKeyword = new Keyword(keyword);
+            if(!keywordsFromMemory.contains(newKeyword)){
+                listKeywords.add(newKeyword);
+            }
         }
 
         service.addKeyword(listKeywords);
@@ -34,7 +41,6 @@ public class KeywordController {
 
     @PostMapping("/api/prediction")
     public PredictionResponse predict(@RequestBody PredictionRequest request){
-        System.out.println(request.getPostText());
         String result = service.predict(request.getPostText());
         return new PredictionResponse(result);
     }

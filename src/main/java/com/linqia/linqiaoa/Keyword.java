@@ -1,6 +1,7 @@
 package com.linqia.linqiaoa;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 
@@ -10,6 +11,20 @@ public class Keyword {
     private Integer id;
     @Column(nullable = false) // Value can't be empty
     private String textValue;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Keyword keyword = (Keyword) o;
+        return Objects.equals(textValue, keyword.textValue);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(textValue);
+    }
+
     public Keyword(){
 
     }
