@@ -2,20 +2,20 @@ package com.linqia.linqiaoa;
 
 
 public class AddKeywordsRequest {
-    private String[] keywords;
+    private String[] vocab;
     public AddKeywordsRequest(){
 
     }
 
     public AddKeywordsRequest(String[] inputs){
-        keywords = inputs;
+        vocab = inputs;
     }
 
-    public String[] getKeywords() {
-        return keywords;
+    public String[] getVocab() {
+        return vocab;
     }
 
-    public void setKeywords(String[] keywords) {
-        this.keywords = keywords;
+    public void setVocab(String[] vocab) {
+        this.vocab = vocab;
     }
 }

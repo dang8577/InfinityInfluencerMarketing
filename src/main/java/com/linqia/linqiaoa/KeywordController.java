@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -25,7 +24,7 @@ public class KeywordController {
     */
     @PostMapping("/api/vocab")
     public ListKeywordResponse addKeyword(@RequestBody AddKeywordsRequest request){ // Use @requestBody to convert JSON to Java Object
-        String[] keywords = request.getKeywords();
+        String[] keywords = request.getVocab();
         List<Keyword> listKeywords = new ArrayList<>();
         List<Keyword> keywordsFromMemory = service.listKeywords();
         for(String keyword: keywords){
@@ -41,7 +40,7 @@ public class KeywordController {
 
     @PostMapping("/api/prediction")
     public PredictionResponse predict(@RequestBody PredictionRequest request){
-        String result = service.predict(request.getPostText());
+        String result = service.predict(request.getPost_text());
         return new PredictionResponse(result);
     }
 }

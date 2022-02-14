@@ -1,13 +1,13 @@
 package com.linqia.linqiaoa;
 
 public class PredictionRequest {
-    private String postText;
+    private String post_text;
 
-    public String getPostText() {
-        return postText;
+    public String getPost_text() {
+        return post_text;
     }
 
-    public void setPostText(String postText) {
-        this.postText = postText;
+    public void setPost_text(String post_text) {
+        this.post_text = post_text;
     }
 }
